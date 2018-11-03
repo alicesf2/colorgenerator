@@ -21,60 +21,60 @@ def getColors(valence, tempo, energy, mode):
         return achromatic(startColor.hue)
     elif valence < midValence:
         #return analogous
-        return analogous(startColor.hue)
+        return analogous(startColor.hue, valence)
     else:
         #return complimentary
-        return complementary(startColor.hue)
+        return complementary(startColor.hue, valence)
     return []
 
-def analogous(startHue):
+def analogous(startHue, valence):
     startHue = startHue * 360
 
-    rightHue = startHue + 30
+    rightHue = startHue + 60
     if rightHue > 360:
         rightHue = rightHue % 360
 
-    rightRightHue = startHue + 15
+    rightRightHue = startHue + 30
     if rightRightHue > 360:
         rightRightHue = rightRightHue % 360
 
-    leftHue = startHue - 30
+    leftHue = startHue - 60
     if leftHue < 0:
         leftHue = leftHue + 360
 
-    leftLeftHue = startHue - 15
+    leftLeftHue = startHue - 30
     if leftLeftHue < 0:
         leftLeftHue = leftLeftHue + 360
-    return [Color(hsl=(leftHue/360.0, 1.0, 0.5)),
-    Color(hsl=(leftLeftHue/360.0, 1.0, 0.5)),
-    Color(hsl=(startHue/360.0, 1.0, 0.5)),
-    Color(hsl=(rightRightHue/360.0, 1.0, 0.5)),
-    Color(hsl=(rightHue/360.0, 1.0, 0.5))]
+    return [Color(hsl=(leftHue/360.0, valence, 0.3)).hex_l,
+    Color(hsl=(leftLeftHue/360.0, valence, 0.3)).hex_l,
+    Color(hsl=(startHue/360.0, valence, 0.3)).hex_l,
+    Color(hsl=(rightRightHue/360.0, valence, 0.3)).hex_l,
+    Color(hsl=(rightHue/360.0, valence, 0.3)).hex_l]
 
 def monochromatic(startHue):
-    return [Color(hue = startHue, saturation = 1.0, luminance = 0.15),
-    Color(hue = startHue, saturation = 1.0, luminance = 0.25),
-    Color(hue = startHue, saturation = 1.0, luminance = 0.5),
-    Color(hue = startHue, saturation = 1.0, luminance = 0.75),
-    Color(hue = startHue, saturation = 1.0, luminance = 0.90)]
+    return [Color(hue = startHue, saturation = 1.0, luminance = 0.15).hex_l,
+    Color(hue = startHue, saturation = 1.0, luminance = 0.25).hex_l,
+    Color(hue = startHue, saturation = 1.0, luminance = 0.5).hex_l,
+    Color(hue = startHue, saturation = 1.0, luminance = 0.75).hex_l,
+    Color(hue = startHue, saturation = 1.0, luminance = 0.90).hex_l]
 
 def achromatic(startHue):
-    return [Color(hsl=(startHue, 0.9, 0.5)),
-    Color(hsl=(startHue, 0.8, 0.5)),
-    Color(hsl=(startHue, 0.5, 0.5)),
-    Color(hsl=(startHue, 0.2, 0.5)),
-    Color(hsl=(startHue, 0.1, 0.5))]
+    return [Color(hsl=(startHue, 0, 0.8)).hex_l,
+    Color(hsl=(startHue, 0, 0.5)).hex_l,
+    Color(hsl=(startHue, 0, 0.3)).hex_l,
+    Color(hsl=(startHue, 0, 0.1)).hex_l,
+    Color(hsl=(startHue, 0, 0)).hex_l]
 
-def complementary(startHue):
+def complementary(startHue, valence):
     print(startHue)
     rightHue = (startHue*360) + 180
     if rightHue > 360:
         rightHue = rightHue % 360
-    return [Color(hsl=(startHue, 1.0, 0.75)),
-     Color(hsl=(startHue, 1.0, 0.5)),
-     Color(hsl=(startHue, 1.0, 0.25)),
-     Color(hsl=(rightHue/360.0, 1.0, 0.5)),
-     Color(hsl=(rightHue/360.0, 1.0, 0.75))]
+    return [Color(hsl=(startHue, valence, 0.75)).hex_l,
+     Color(hsl=(startHue, valence, 0.5)).hex_l,
+     Color(hsl=(startHue, valence, 0.25)).hex_l,
+     Color(hsl=(rightHue/360.0, valence, 0.5)).hex_l,
+     Color(hsl=(rightHue/360.0, valence, 0.75)).hex_l]
 
 #-----------------------------COLOR CHOOSING------------------------------
 

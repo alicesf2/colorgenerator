@@ -4,13 +4,15 @@ import random
 minTempo = 76
 midValence = 0.4
 
-def getColors(valence, tempo, energy, mode): 
+def getColors(valence, tempo, energy, mode):
     if mode == 0:
         #get colorscheme COOL AS CENTRAL
         startColor = randomStartCool()
     else:
         #get colorscheme WARM AS CENTRAL
         startColor = randomStartWarm()
+    if (energy >= 0.9):
+        return complementary(startColor.hue)
     if tempo < minTempo:
         #monochromatic
         return monochromatic(startColor.hue)

@@ -1,0 +1,43 @@
+
+.App {
+  text-align: center;
+}
+
+.color {
+  background-color: red;
+}
+
+.card {
+  margin-top: 1px;
+  height: 110px;
+}
+
+.cardhover{
+  display: none;
+}
+
+.card:hover > .cardhover{
+  display: inline-block;
+  position: absolute;
+  bottom: 0;
+}
+
+.white-text {
+  text-align: center;
+  color: #ffffff;
+}
+
+.center {
+  margin: auto;
+  text-align: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.header {
+  background-color: #444444;
+  color: white;
+  text-align: center;
+  padding-top: 30px;
+}

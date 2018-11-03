@@ -16,7 +16,7 @@ import "./App.css";
 
 class App extends Component {
   state = {
-    login: false,
+    login: true,
     search: true,
     display: false
   };
@@ -34,7 +34,7 @@ class App extends Component {
 
   renderSearchBar = () => {
     return (
-      <Form inline className="searchbar">
+      <Form control className="searchbar">
         <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
           <Label for="searchBar" />
           <Input

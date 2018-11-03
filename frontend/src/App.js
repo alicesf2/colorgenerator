@@ -12,6 +12,9 @@ import {
   Label,
   Input
 } from "reactstrap";
+import {
+  BodyBackgroundColor
+} from "react-body-backgroundcolor";
 import "./App.css";
 
 class App extends Component {
@@ -37,7 +40,7 @@ class App extends Component {
       <Form control>
         <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
           <Label for="searchBar" />
-          <Input
+          <Input className="input"
             type="text"
             bsSize="lg"
             placeholder="Search for a song..."
@@ -70,7 +73,7 @@ class App extends Component {
     if (this.state.login === true) {
       return (
         <Container fluid={true}>
-          <h1 className="header">Color Generator</h1>
+          <h1 className="header">ColorGenerator</h1>
           {this.renderLoginButton()}
         </Container>
       );
@@ -88,23 +91,45 @@ class App extends Component {
     if (this.state.display === true) {
       return (
         <Container fluid={true}>
-          <h1 className="header">Color Generator</h1>
+          <h1 className="header">ColorGenerator</h1>
           <Row>
             <Col lg="4">
               <Card className="card">
-                <CardTitle>Card 1</CardTitle>
+                <div className = "cardhover center">
+                  <h2 className = "white-text"> Card 1 </h2>
+                </div>
                 <CardBody className="color" />
               </Card>
             </Col>
             <Col lg="4">
               <Card className="card">
-                <CardTitle>Card 2</CardTitle>
+                <div className = "cardhover center">
+                  <h2 className = "white-text"> Card 2 </h2>
+                </div>
                 <CardBody className="color" />
               </Card>
             </Col>
             <Col lg="4">
               <Card className="card">
-                <CardTitle>Card 3</CardTitle>
+                <div className = "cardhover center">
+                  <h2 className = "white-text"> Card 3 </h2>
+                </div>
+                <CardBody className="color" />
+              </Card>
+            </Col>
+            <Col lg="4">
+              <Card className="card">
+                <div className = "cardhover center">
+                  <h2 className = "white-text"> Card 4 </h2>
+                </div>
+                <CardBody className="color" />
+              </Card>
+            </Col>
+            <Col lg="4">
+              <Card className="card">
+                <div className = "cardhover center">
+                  <h2 className = "white-text"> Card 5 </h2>
+                </div>
                 <CardBody className="color" />
               </Card>
             </Col>

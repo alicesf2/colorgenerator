@@ -25,11 +25,32 @@ document.getElementById('search-button').addEventListener('click', function() {
             for (var i = 0; i < song_arr.length; i++) {
                 search_list += '<li>' + '<h4>Title: ' + song_arr[i].name + '<h4>Artists: ';
                 for (var j = 0; j < song_arr[i].artists.length; j++) {
-                    search_list += song_arr[i].artists[j].name + ', ';
+                    search_list += song_arr[i].artists[j].name;
+                    if (j != song_arr[i].artists.length - 1) {
+                        search_list += ', ';
+                    }
                 }
+                search_list += '<h3>id: ' + song_arr[i].id + '</h3>';
                 search_list += '</li>';
             }
             document.getElementById('search_results').innerHTML = search_list;
+        });
+    });
+}, false);
+
+var features;
+document.getElementById('generate-colors').addEventListener('click', function() {
+    var id = document.getElementById('input-id').value;
+    $.ajax({
+      url: '/audio-features',
+      data: {
+        'refresh_token': params.refresh_token
+      }
+    }).done(function(data) {
+        $.ajax({
+            url: `/audio-features?id=${id}&access_token=${data.access_token}`
+        }).done(function(data) {
+            features = data.features;
         });
     });
 }, false);

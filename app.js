@@ -146,7 +146,7 @@ app.get('/refresh_token', function(req, res) {
 app.get('/search', function(req, res) {
     var query = req.query.query;
     var accessToken = req.query.access_token;
-    var url = 'https://api.spotify.com/v1/search?q=' + parseString(query) + '&type=track';
+    var url = 'https://api.spotify.com/v1/search?q=' + parseString(query) + '&type=track&limit=5';
 
     var authOptions = {
         url: url,
@@ -172,6 +172,30 @@ function parseString(query) {
     var output = arr.join("%20");
     return output;
 }
+
+app.get('/audio-features', function(req, res) {
+    var id = req.query.id;
+    var accessToken = req.query.access_token;
+    var url = 'https://api.spotify.com/v1/audio-features/' + id;
+
+    var authOptions = {
+        url: url,
+        headers: {
+          'Authorization': 'Bearer ' + accessToken
+        },
+        json: true
+    }
+
+    request.get(authOptions, function(error, response, body) {
+        if (!error && response.statusCode === 200) {
+            console.log(body);
+            var features;
+            res.send({
+                'features': features
+            });
+        }
+    })
+});
 
 console.log('Listening on 8888');
 app.listen(8888);

@@ -4,7 +4,7 @@ import random
 minTempo = 76
 midValence = 0.4
 
-def getColors(valence, tempo, energy, mode):
+def getColors(valence, tempo, energy, mode): 
     if mode == 0:
         #get colorscheme COOL AS CENTRAL
         startColor = randomStartCool()

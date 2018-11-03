@@ -20,8 +20,8 @@ import "./App.css";
 class App extends Component {
   state = {
     login: false,
-    search: true,
-    display: false
+    search: false,
+    display: true
   };
 
   renderLoginButton = () => {
@@ -85,19 +85,25 @@ class App extends Component {
           <Row>
             <Col lg="4">
               <Card className="card">
-                <CardTitle>Card 1</CardTitle>
+                <div className = "cardhover center">
+                  <h2 className = "white-text"> Card 1 </h2>
+                </div>
                 <CardBody className="color" />
               </Card>
             </Col>
             <Col lg="4">
               <Card className="card">
-                <CardTitle>Card 2</CardTitle>
+                <div className = "cardhover center">
+                  <h2 className = "white-text"> Card 2 </h2>
+                </div>
                 <CardBody className="color" />
               </Card>
             </Col>
             <Col lg="4">
               <Card className="card">
-                <CardTitle>Card 3</CardTitle>
+                <div className = "cardhover center">
+                  <h2 className = "white-text"> Card 3 </h2>
+                </div>
                 <CardBody className="color" />
               </Card>
             </Col>

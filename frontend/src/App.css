@@ -11,6 +11,29 @@
   margin-top: 30px;
 }
 
+.cardhover{
+  display: none;
+}
+
+.card:hover > .cardhover{
+  display: inline-block;
+  position: absolute;
+  bottom: 0;
+}
+
+.white-text {
+  text-align: center;
+  color: #ffffff;
+}
+
+.center {
+  margin: auto;
+  text-align: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
 .header {
   background-color: #444444;
   color: white;
@@ -25,8 +48,4 @@
 .searchbar {
   margin-left: auto;
   margin-right: auto;
-}
-
-.searchbar:hover {
-
 }

@@ -13,53 +13,41 @@ def getColors(valence, tempo, energy, mode):
         startColor = randomStartWarm()
     if tempo < minTempo:
         #monochromatic
-        return monochromatic(startColor)
+        return monochromatic(startColor.hue)
     if valence == 0:
         #return acrhomatic color scheme
-        return achromatic(startColor)
+        return achromatic(startColor.hue)
     elif valence < midValence:
         #return analogous
-        return analogous(startColor)
+        return analogous(startColor.hue)
     else:
         #return complimentary
-        return complimentary(startColor)
+        return complementary(startColor.hue)
     return []
 
-def analogous(startColor):
-    startHue = startColor.hue
+def analogous(startHue):
     rightHue = startHue + 30
     if rightHue > 360:
         rightHue = rightHue % 360
     leftHue = startHue - 30
     if leftHue < 0:
         leftHue = leftHue + 360
-    return [Color(hsl=(leftHue, 1.0, 0.5)).hex_l, startColor.hex_l, Color(hsl=(rightHue, 1.0, 0.5)).hex_l]
+    return [Color(hsl=(leftHue, 1.0, 0.5)), Color(hsl=(startHue, 1.0, 0.5)), Color(hsl=(rightHue, 1.0, 0.5))]
 
-def monochromatic(startColor):
-    startHue = startColor.hue
-    return [startColor.hex_l, Color(hsl=(startHue, 1.0, 0.75)).hex_l, Color(hsl=(startHue, 1.0, 0.90)).hex_l]
+def monochromatic(startHue):
+    return [Color(hue = startHue, saturation = 1.0, luminance = 0.5),
+    Color(hue = startHue, saturation = 1.0, luminance = 0.75),
+    Color(hue = startHue, saturation = 1.0, luminance = 0.90)]
 
-def achromatic(startColor):
-    startHue = startColor.hue
-    return [Color(hsl=(startHue, .6, 1)).hex_l, Color(hsl=(startHue, 0, 0.5)).hex_l, Color(hsl=(startHue, .3, 0)).hex_l]
+def achromatic(startHue):
+    return [Color(hsl=(startHue, 0.8, 0.5)), Color(hsl=(startHue, 0.5, 0.5)), Color(hsl=(startHue, 0.2, 0.5))]
 
-def complimentary(startColor):
-    return []
-
-def whichColor(startColorHue):
-    if startColorHue >= 0 and startColorHue <= 10:
-        return "red"
-    elif startColorHue >= 346 and startColorHue <= 360:
-        return "red"
-    elif startColorHue >= 11 and startColorHue <= 50:
-        return "orange"
-    elif startColorHue >= 51 and startColorHue <= 80:
-        return "yellow"
-    elif startColorHue >= 81 and startColorHue <= 169:
-        return "green"
-    elif startColorHue >= 170 and startColorHue <= 241:
-        return "blue"
-    return "violet"
+def complementary(startHue):
+    print(startHue)
+    rightHue = (startHue*360) + 180
+    if rightHue > 360:
+        rightHue = rightHue % 360
+    return [Color(hsl=(startHue, 1.0, 0.75)), Color(hsl=(startHue, 1.0, 0.5)), Color(hsl=(rightHue/360.0, 1.0, 0.5))]
 
 #-----------------------------COLOR CHOOSING------------------------------
 
@@ -89,32 +77,32 @@ def red():
     hue2 = random.randint(0, 11)
     huePicker = random.randint(0,2)
     if huePicker == 0:
-        red = Color(hsl=(hue, 1, 0.5))
+        red = Color(hsl=(hue/360.0, 1, 0.5))
     else:
-        red = Color(hsl=(hue2, 1, 0.5))
+        red = Color(hsl=(hue2/360.0, 1, 0.5))
     return red
 
 def orange():
     #hue: 11-50
     hue = random.randint(11, 51)
-    return Color(hsl=(hue, 1, 0.5))
+    return Color(hsl=(hue/360.0, 1, 0.5))
 
 def yellow():
     #hue: 51-80
     hue = random.randint(51, 81)
-    return Color(hsl=(hue, 1, 0.5))
+    return Color(hsl=(hue/360.0, 1, 0.5))
 
 def green():
     #hue: 81-169
     hue = random.randint(81, 170)
-    return Color(hsl=(hue, 1, 0.5))
+    return Color(hsl=(hue/360.0, 1, 0.5))
 
 def blue():
     #hue: 170-240
     hue = random.randint(170, 241)
-    return Color(hsl=(hue, 1, 0.5))
+    return Color(hsl=(hue/360.0, 1, 0.5))
 
 def violet():
     #hue: 241-345
     hue = random.randint(241, 345)
-    return Color(hsl=(hue, 1, 0.5))
+    return Color(hsl=(hue/360.0, 1, 0.5))

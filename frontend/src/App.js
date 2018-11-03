@@ -12,6 +12,9 @@ import {
   Label,
   Input
 } from "reactstrap";
+import {
+  BodyBackgroundColor
+} from "react-body-backgroundcolor";
 import "./App.css";
 
 class App extends Component {
@@ -34,10 +37,10 @@ class App extends Component {
 
   renderSearchBar = () => {
     return (
-      <Form inline className="searchbar">
+      <Form control className="searchbar">
         <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
           <Label for="searchBar" />
-          <Input
+          <Input className="input"
             type="text"
             bsSize="lg"
             placeholder="Search for a song..."
@@ -60,7 +63,7 @@ class App extends Component {
     if (this.state.login === true) {
       return (
         <Container fluid={true}>
-          <h1 className="header">Color Generator</h1>
+          <h1 className="header">ColorGenerator</h1>
           {this.renderLoginButton()}
         </Container>
       );
@@ -69,7 +72,7 @@ class App extends Component {
     if (this.state.search === true) {
       return (
         <Container fluid={true}>
-          <h1 className="header">Color Generator</h1>
+          <h1 className="header">ColorGenerator</h1>
           <div className="text-center">{this.renderSearchBar()}</div>
         </Container>
       );
@@ -78,7 +81,7 @@ class App extends Component {
     if (this.state.display === true) {
       return (
         <Container fluid={true}>
-          <h1 className="header">Color Generator</h1>
+          <h1 className="header">ColorGenerator</h1>
           <Row>
             <Col lg="4">
               <Card className="card">

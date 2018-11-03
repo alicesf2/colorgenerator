@@ -4,7 +4,7 @@ import random
 minTempo = 76
 midValence = 0.4
 
-def getColors(valence, tempo, energy, mode):
+def getColors(valence, tempo, energy, mode): 
     if mode == 0:
         #get colorscheme COOL AS CENTRAL
         startColor = randomStartCool()
@@ -26,28 +26,53 @@ def getColors(valence, tempo, energy, mode):
     return []
 
 def analogous(startHue):
+    startHue = startHue * 360
+
     rightHue = startHue + 30
     if rightHue > 360:
         rightHue = rightHue % 360
+
+    rightRightHue = startHue + 15
+    if rightRightHue > 360:
+        rightRightHue = rightRightHue % 360
+
     leftHue = startHue - 30
     if leftHue < 0:
         leftHue = leftHue + 360
-    return [Color(hsl=(leftHue, 1.0, 0.5)), Color(hsl=(startHue, 1.0, 0.5)), Color(hsl=(rightHue, 1.0, 0.5))]
+
+    leftLeftHue = startHue - 15
+    if leftLeftHue < 0:
+        leftLeftHue = leftLeftHue + 360
+    return [Color(hsl=(leftHue/360.0, 1.0, 0.5)),
+    Color(hsl=(leftLeftHue/360.0, 1.0, 0.5)),
+    Color(hsl=(startHue/360.0, 1.0, 0.5)),
+    Color(hsl=(rightRightHue/360.0, 1.0, 0.5)),
+    Color(hsl=(rightHue/360.0, 1.0, 0.5))]
 
 def monochromatic(startHue):
-    return [Color(hue = startHue, saturation = 1.0, luminance = 0.5),
+    return [Color(hue = startHue, saturation = 1.0, luminance = 0.15),
+    Color(hue = startHue, saturation = 1.0, luminance = 0.25),
+    Color(hue = startHue, saturation = 1.0, luminance = 0.5),
     Color(hue = startHue, saturation = 1.0, luminance = 0.75),
     Color(hue = startHue, saturation = 1.0, luminance = 0.90)]
 
 def achromatic(startHue):
-    return [Color(hsl=(startHue, 0.8, 0.5)), Color(hsl=(startHue, 0.5, 0.5)), Color(hsl=(startHue, 0.2, 0.5))]
+    return [Color(hsl=(startHue, 0.9, 0.5)),
+    Color(hsl=(startHue, 0.8, 0.5)),
+    Color(hsl=(startHue, 0.5, 0.5)),
+    Color(hsl=(startHue, 0.2, 0.5)),
+    Color(hsl=(startHue, 0.1, 0.5))]
 
 def complementary(startHue):
     print(startHue)
     rightHue = (startHue*360) + 180
     if rightHue > 360:
         rightHue = rightHue % 360
-    return [Color(hsl=(startHue, 1.0, 0.75)), Color(hsl=(startHue, 1.0, 0.5)), Color(hsl=(rightHue/360.0, 1.0, 0.5))]
+    return [Color(hsl=(startHue, 1.0, 0.75)),
+     Color(hsl=(startHue, 1.0, 0.5)),
+     Color(hsl=(startHue, 1.0, 0.25)),
+     Color(hsl=(rightHue/360.0, 1.0, 0.5)),
+     Color(hsl=(rightHue/360.0, 1.0, 0.75))]
 
 #-----------------------------COLOR CHOOSING------------------------------
 

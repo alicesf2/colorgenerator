@@ -188,10 +188,11 @@ app.get('/audio-features', function(req, res) {
 
     request.get(authOptions, function(error, response, body) {
         if (!error && response.statusCode === 200) {
-            console.log(body);
-            var features;
             res.send({
-                'features': features
+                'valence': body.valence,
+                'tempo': body.tempo,
+                'energy': body.energy,
+                'mode': body.mode
             });
         }
     })

@@ -38,11 +38,11 @@ document.getElementById('search-button').addEventListener('click', function() {
     });
 }, false);
 
-var features;
+var valence, tempo, energy, mode;
 document.getElementById('generate-colors').addEventListener('click', function() {
     var id = document.getElementById('input-id').value;
     $.ajax({
-      url: '/audio-features',
+      url: '/refresh_token',
       data: {
         'refresh_token': params.refresh_token
       }
@@ -50,7 +50,10 @@ document.getElementById('generate-colors').addEventListener('click', function() 
         $.ajax({
             url: `/audio-features?id=${id}&access_token=${data.access_token}`
         }).done(function(data) {
-            features = data.features;
+            valence = data.valence;
+            tempo = data.tempo;
+            energy = data.energy;
+            mode = data.mode;
         });
     });
 }, false);

@@ -17,7 +17,7 @@ import "./App.css";
 class App extends Component {
   state = {
     login: true,
-    search: true,
+    search: false,
     display: false
   };
 
@@ -34,7 +34,7 @@ class App extends Component {
 
   renderSearchBar = () => {
     return (
-      <Form control className="searchbar">
+      <Form control>
         <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
           <Label for="searchBar" />
           <Input
@@ -48,12 +48,22 @@ class App extends Component {
             onKeyPress={event => {
               if (event.key === "Enter") {
                 event.preventDefault();
+                // TODO: handleEnter
               }
             }}
           />
         </FormGroup>
       </Form>
     );
+  };
+
+  search = () => {
+    console.log("searching");
+    if (success) {
+      this.searchCallback(result);
+    } else {
+      console.log(message);
+    }
   };
 
   render() {
@@ -70,7 +80,7 @@ class App extends Component {
       return (
         <Container fluid={true}>
           <h1 className="header">Color Generator</h1>
-          <div className="text-center">{this.renderSearchBar()}</div>
+          {this.renderSearchBar()}
         </Container>
       );
     }

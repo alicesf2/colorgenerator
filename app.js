@@ -143,11 +143,35 @@ app.get('/refresh_token', function(req, res) {
   });
 });
 
-// app.get('/v1/search', function(req, res) {
-//     var authOptions = {
-//
-//     }
-// });
+app.get('/search', function(req, res) {
+    var query = req.query.query;
+    var accessToken = req.query.access_token;
+    var url = 'https://api.spotify.com/v1/search?q=' + parseString(query) + '&type=track';
+
+    var authOptions = {
+        url: url,
+        headers: {
+          'Authorization': 'Bearer ' + accessToken
+        },
+        json: true
+    }
+
+    request.get(authOptions, function(error, response, body) {
+        if (!error && response.statusCode === 200) {
+            var song_arr = body.tracks.items;
+            res.send({
+                'song_arr': song_arr
+            });
+        }
+    })
+});
+
+function parseString(query) {
+    var trim = query.trim();
+    var arr = trim.split(" ");
+    var output = arr.join("%20");
+    return output;
+}
 
 console.log('Listening on 8888');
 app.listen(8888);

@@ -33,16 +33,33 @@ def analogous(startColor):
     leftHue = startHue - 30
     if leftHue < 0:
         leftHue = leftHue + 360
-    return [Color(hsl=(leftHue, 1.0, 0.5)), startColor, Color(hsl=(rightHue, 1.0, 0.5))]
+    return [Color(hsl=(leftHue, 1.0, 0.5)).hex_l, startColor.hex_l, Color(hsl=(rightHue, 1.0, 0.5)).hex_l]
 
 def monochromatic(startColor):
-    return []
+    startHue = startColor.hue
+    return [startColor.hex_l, Color(hsl=(startHue, 1.0, 0.75)).hex_l, Color(hsl=(startHue, 1.0, 0.90)).hex_l]
 
 def achromatic(startColor):
-    return []
+    startHue = startColor.hue
+    return [Color(hsl=(startHue, .6, 1)).hex_l, Color(hsl=(startHue, 0, 0.5)).hex_l, Color(hsl=(startHue, .3, 0)).hex_l]
 
 def complimentary(startColor):
     return []
+
+def whichColor(startColorHue):
+    if startColorHue >= 0 and startColorHue <= 10:
+        return "red"
+    elif startColorHue >= 346 and startColorHue <= 360:
+        return "red"
+    elif startColorHue >= 11 and startColorHue <= 50:
+        return "orange"
+    elif startColorHue >= 51 and startColorHue <= 80:
+        return "yellow"
+    elif startColorHue >= 81 and startColorHue <= 169:
+        return "green"
+    elif startColorHue >= 170 and startColorHue <= 241:
+        return "blue"
+    return "violet"
 
 #-----------------------------COLOR CHOOSING------------------------------
 

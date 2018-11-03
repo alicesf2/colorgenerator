@@ -8,6 +8,6 @@ app = Flask(__name__)
 def main():
     #each scheme has 3 colors
     red = utils.red()
-    colors = utils.analogous(red)
+    colors = utils.achromatic(red)
 
-    return "%s, %s, %s" % (colors[0].hue, colors[1].hue, colors[2].hue)
+    return "%s, %s, %s" % (colors[0], colors[1], colors[2])

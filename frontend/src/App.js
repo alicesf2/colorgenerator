@@ -107,6 +107,22 @@ class App extends Component {
                 <CardBody className="color" />
               </Card>
             </Col>
+            <Col lg="4">
+              <Card className="card">
+                <div className = "cardhover center">
+                  <h2 className = "white-text"> Card 4 </h2>
+                </div>
+                <CardBody className="color" />
+              </Card>
+            </Col>
+            <Col lg="4">
+              <Card className="card">
+                <div className = "cardhover center">
+                  <h2 className = "white-text"> Card 5 </h2>
+                </div>
+                <CardBody className="color" />
+              </Card>
+            </Col>
           </Row>
         </Container>
       );
